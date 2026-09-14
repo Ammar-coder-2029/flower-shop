@@ -23,34 +23,44 @@ logoutBtn.addEventListener("click", function(e) {
 
 let allproducts = document.querySelector(".products")
 let products = [
-    {id: 1, title: "JETOUR", imgurl: "imges/palnt-blue.jfif", price: 100, qty: 1, catigory: "normal" },
-    {id: 2, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 3, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 4, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 5, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 6, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 7, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 8, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 9, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 10, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 11, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
-    {id: 12, title: "JETOUR", imgurl: "imges/grayJETOUR.jpg", price: 100, qty: 1, catigory: "normal" },
+    {id: 1, title: "JETOUR",  imgurl: "imges/palnt-blue.jfif",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 2, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 3, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 4, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 5, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 6, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 7, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 8, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 9, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 10, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 11, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 12, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
 ];
 let itemadded = localStorage.getItem("IteminCart") ? JSON.parse(localStorage.getItem("IteminCart")) : [];
 // لو الداتا اللي رجعت مش مصفوفة لأي سبب خليها مصفوفة فاضية
 if (!Array.isArray(itemadded)) {
     itemadded = [];
 }
-
+let iteaminFav = localStorage.getItem("iteminFAV") ? JSON.parse(localStorage.getItem("iteminFAV")) : []
+if (!Array.isArray(iteaminFav)) {
+    iteaminFav = [];
+}
 
 function drawitem() {
     let x = products.map((item) => {
         let isAdded = itemadded.find((i) => i.id === item.id);
+        let isFav = iteaminFav.find((i)=> i.id === item.id)
         let btn = ""
+        let span= ""
         if (isAdded) {
             btn = `<button class="bg-red-700 hover:bg-red-800 text-white rounded p-1" onclick="removeitem(${item.id})">remove from cart</button>`;
         } else {
             btn = `<button class="bg-green-700 hover:bg-green-800 text-white rounded p-1" onclick="add(${item.id})">add to cart</button>`;
+        }
+        if (isFav) {
+            span = `<span class="cursor-pointer"  onclick="removeFromFAV(${item.id})" ><i class="fa-solid fa-heart text-red-800"></i></span>`
+        } else {
+            span = `<span class="cursor-pointer"  onclick="fav(${item.id})" ><i class="fa-solid fa-heart text-gray-400"></i></span>`
         }
         return `
             <div class="product h-fit md:h-[350px]">
@@ -62,7 +72,7 @@ function drawitem() {
                     <h4>price: $${item.price}</h4>
                     <h4 class="catigory">catigory: ${item.catigory}</h4>
                     <div class="action flex justify-between items-center mt-2">
-                        <span class="cursor-pointer" id="add-to-fav"><i class="fa-solid fa-heart text-gray-400"></i></span>
+                        ${span}
                         ${btn}
                     </div>
                 </div>
@@ -100,6 +110,12 @@ function renderincartlist() {
 function removeitem(id){
     itemadded = itemadded.filter((item)=> item.id !== id)
     localStorage.setItem("IteminCart",JSON.stringify(itemadded))
+    renderincartlist()
+    drawitem()
+}
+function removeFromFAV(id){
+    iteaminFav = iteaminFav.filter((item)=> item.id !== id)
+    localStorage.setItem("iteminFAV",JSON.stringify(iteaminFav))
     renderincartlist()
     drawitem()
 }
@@ -143,6 +159,23 @@ function drawCartItem(item) {
             </div>
         </div>
     `;
+}
+function fav(id){
+    if (isloggin == "true") {
+        let infav = products.find((item)=>item.id===id)
+        let beenadded = iteaminFav.find((item)=> item.id === id)
+        if (!beenadded) {
+            iteaminFav = [...iteaminFav , infav]
+        }
+        localStorage.setItem("iteminFAV",JSON.stringify(iteaminFav))
+        renderincartlist()
+        drawitem()
+    }else{
+        alert("you need to sign in")
+        setTimeout(()=>{
+            window.location = "login.html"
+        },500)
+    }
 }
 function changeQTY(id, val) {
     let item = itemadded.find((item) => item.id === id);
