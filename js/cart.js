@@ -108,6 +108,7 @@ cartlist.addEventListener("click", () => {
 function renderincartlist() {
     document.getElementById("pop-list-items").innerHTML = itemadded.map(drawCartItem).join("");
     document.getElementsByClassName("favContainer").innerHTML = iteaminFav.map(drawiteminfav).join("");
+    document.getElementsByClassName("totalprice").innerHTML = itemadded.qty*itemadded.price
     let totalQty = itemadded.reduce((acc, item) => {
         return acc = item.qty + acc
     }, 0);

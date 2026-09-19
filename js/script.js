@@ -23,18 +23,18 @@ logoutBtn.addEventListener("click", function(e) {
 
 let allproducts = document.querySelector(".products")
 let products = [
-    {id: 1, title: "JETOUR",  imgurl: "imges/palnt-blue.jfif", price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 2, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "mot"  },
-    {id: 3, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 4, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 5, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 6, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 7, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 8, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 9, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 10, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg", price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 11, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg", price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 12, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg", price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 1, title: "Red Rose",  imgurl: "imges/Red-Rose.jpg", price: 30,  qty: 1,  catigory: "Romantic"  },
+    {id: 2, title: "Yellow Tulip",  imgurl: "imges/tulip.jpg",  price: 25,  qty: 1,  catigory: "Spring"  },
+    {id: 3, title: "Sun flower",  imgurl: "imges/sunflower.jpg",  price: 20,  qty: 1,  catigory: "Outdoor"  },
+    {id: 4, title: "White Jasmine",  imgurl: "imges/White-Jasmine.jpg",  price: 40,  qty: 1,  catigory: "Fragrant"  },
+    {id: 5, title: "Pink Lily",  imgurl: "imges/lily.jpg",  price: 50,  qty: 1,  catigory: "Elegant"  },
+    {id: 6, title: "Daisy",  imgurl: "imges/daisy.jpg",  price: 15,  qty: 1,  catigory: "Outdoor"  },
+    {id: 7, title: "Hydrangea",  imgurl: "imges/hydrangea.jpg",  price: 65,  qty: 1,  catigory: "Premium"  },
+    {id: 8, title: "Peony",  imgurl: "imges/peony.jpg",  price: 70,  qty: 1,  catigory: "Premium"  },
+    {id: 9, title: "Carnation",  imgurl: "imges/carnation.jpg",  price: 22,  qty: 1,  catigory: "Spring"  },
+    {id: 10, title: "Hibiscus",  imgurl: "imges/hibiscus.jpg", price: 35,  qty: 1,  catigory: "Tropical"  },
+    {id: 11, title: "Chrysanthemum",  imgurl: "imges/chrysanthemum.jpg", price: 28,  qty: 1,  catigory: "Autumn"  },
+    {id: 12, title: "Daffodil",  imgurl: "imges/daffodil.jpg", price: 30,  qty: 1,  catigory: "Spring"  }
 ];
 let itemadded = localStorage.getItem("IteminCart") ? JSON.parse(localStorage.getItem("IteminCart")) : [];
 // لو الداتا اللي رجعت مش مصفوفة لأي سبب خليها مصفوفة فاضية
@@ -63,7 +63,7 @@ function drawitem(arr) {
             span = `<span class="cursor-pointer"  onclick="fav(${item.id})" ><i class="fa-solid fa-heart text-gray-400"></i></span>`
         }
         return `
-            <div class="product h-fit md:h-[350px]">
+            <div class="product h-fit md:h-[600px]">
                 <div class="img-container">
                     <img src="${item.imgurl}" alt="img of product">
                 </div>
