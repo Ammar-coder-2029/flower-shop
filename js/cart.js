@@ -21,9 +21,6 @@ logoutBtn.addEventListener("click", function(e) {
     }, 500);
 });
 
-// ================== SEARCH ==============================
-
-
 
 // ================== product in cart ===========================
 

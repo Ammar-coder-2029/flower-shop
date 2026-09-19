@@ -24,7 +24,7 @@ logoutBtn.addEventListener("click", function(e) {
 let allproducts = document.querySelector(".products")
 let products = [
     {id: 1, title: "JETOUR",  imgurl: "imges/palnt-blue.jfif", price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 2, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 2, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "mot"  },
     {id: 3, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
     {id: 4, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
     {id: 5, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
@@ -46,8 +46,8 @@ if (!Array.isArray(iteaminFav)) {
     iteaminFav = [];
 }
 
-function drawitem() {
-    let x = products.map((item) => {
+function drawitem(arr) {
+    let x = arr.map((item) => {
         let isAdded = itemadded.find((i) => i.id === item.id);
         let isFav = iteaminFav.find((i)=> i.id === item.id)
         let btn = ""
@@ -82,7 +82,7 @@ function drawitem() {
     
     allproducts.innerHTML = x.join("");
 }
-drawitem()
+drawitem(products)
 
 let cartlist = document.getElementById("cart-icon")
 let cartpop = document.getElementById("pop-list")
@@ -111,13 +111,13 @@ function removeitem(id){
     itemadded = itemadded.filter((item)=> item.id !== id)
     localStorage.setItem("IteminCart",JSON.stringify(itemadded))
     renderincartlist()
-    drawitem()
+    drawitem(products)
 }
 function removeFromFAV(id){
     iteaminFav = iteaminFav.filter((item)=> item.id !== id)
     localStorage.setItem("iteminFAV",JSON.stringify(iteaminFav))
     renderincartlist()
-    drawitem()
+    drawitem(products)
 }
 function add(id){
     if (isloggin === "true") {
@@ -130,7 +130,7 @@ function add(id){
         }
         localStorage.setItem("IteminCart",JSON.stringify(itemadded))
         renderincartlist()
-        drawitem()
+        drawitem(products)
     }else{
         alert("you need to sign in")
         setTimeout(()=>{
@@ -169,7 +169,7 @@ function fav(id){
         }
         localStorage.setItem("iteminFAV",JSON.stringify(iteaminFav))
         renderincartlist()
-        drawitem()
+        drawitem(products)
     }else{
         alert("you need to sign in")
         setTimeout(()=>{
@@ -188,3 +188,26 @@ function changeQTY(id, val) {
     }
 }
 renderincartlist()
+
+// ================== SEARCH ==============================
+
+let searchInput = document.getElementById("search-input");
+let selector = document.getElementById("selector");
+
+function handleSearch() {
+    let searchValue = searchInput.value.toLowerCase();
+    let searchType = selector.value;
+
+    let filtered = products.filter((item) => {
+        if (searchType === "title") {
+            return item.title.toLowerCase().includes(searchValue);
+        } else {
+            return item.catigory.toLowerCase().includes(searchValue);
+        }
+    });
+
+    drawitem(filtered);
+}
+
+searchInput.addEventListener("input", handleSearch);
+selector.addEventListener("change", handleSearch);
