@@ -59,7 +59,7 @@ header{
         }
         .user-info{
             display: flex;
-            color: green;
+            color: rgb(2, 41, 2);
         }
         .pop-list{
             position: absolute;

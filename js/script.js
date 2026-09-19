@@ -23,7 +23,7 @@ logoutBtn.addEventListener("click", function(e) {
 
 let allproducts = document.querySelector(".products")
 let products = [
-    {id: 1, title: "JETOUR",  imgurl: "imges/palnt-blue.jfif",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 1, title: "JETOUR",  imgurl: "imges/palnt-blue.jfif", price: 100,  qty: 1,  catigory: "normal"  },
     {id: 2, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
     {id: 3, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
     {id: 4, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
@@ -32,9 +32,9 @@ let products = [
     {id: 7, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
     {id: 8, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
     {id: 9, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 10, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 11, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
-    {id: 12, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg",  price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 10, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg", price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 11, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg", price: 100,  qty: 1,  catigory: "normal"  },
+    {id: 12, title: "JETOUR",  imgurl: "imges/grayJETOUR.jpg", price: 100,  qty: 1,  catigory: "normal"  },
 ];
 let itemadded = localStorage.getItem("IteminCart") ? JSON.parse(localStorage.getItem("IteminCart")) : [];
 // لو الداتا اللي رجعت مش مصفوفة لأي سبب خليها مصفوفة فاضية
