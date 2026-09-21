@@ -42,13 +42,14 @@ function drawitemincart() {
     let x = itemadded.map((item) => {
         let btn = `<button class="bg-red-700 hover:bg-red-800 text-white rounded p-1" onclick="removeitem(${item.id})">remove from cart</button>`;
         return `
-            <div class="productCart h-fit md:h-[350px]">
+            <div class="productCart flex flex-row h-fit md:h-[350px]">
                 <div class="img-container">
                     <img src="${item.imgurl}" alt="img of product">
                 </div>
                 <div class="disc-prod">
                     <h1 class="font-bold text-xl">${item.title}</h1>
                     <h4>price: $${item.price * item.qty}</h4>
+                    <h4>count: $${item.qty}</h4>
                     <h4 class="catigory">catigory: ${item.catigory}</h4>
                     <div class="action flex justify-between items-center mt-2">
                         ${btn}
@@ -66,7 +67,7 @@ drawitemincart()
 function drawiteminfav() {
     let x = iteaminFav.map((item) => {
         return `
-            <div class="productCart h-fit md:h-[350px]">
+            <div class="productfav flex flex-col h-fit md:h-[350px]">
                 <div class="img-container">
                     <img src="${item.imgurl}" alt="img of product">
                 </div>
@@ -108,7 +109,7 @@ cartlist.addEventListener("click", () => {
 function renderincartlist() {
     document.getElementById("pop-list-items").innerHTML = itemadded.map(drawCartItem).join("");
     document.getElementsByClassName("favContainer").innerHTML = iteaminFav.map(drawiteminfav).join("");
-    document.getElementsByClassName("totalprice").innerHTML = itemadded.qty*itemadded.price
+    document.getElementById("totalprice").innerHTML = itemadded.qty*itemadded.price
     let totalQty = itemadded.reduce((acc, item) => {
         return acc = item.qty + acc
     }, 0);

@@ -13,9 +13,10 @@ header{
     padding: 5px 10px;
     min-height: 40px;
     z-index: 10;
-    background:linear-gradient(to left,rgba(255, 255, 255, 0.8),oklch(39.3% 0.095 152.535 / 60%),oklch(25.741% 0.0654 152.749 / 70%));
-    box-shadow: 0 0 10px 1px rgba(32, 32, 32, 0.432);
-    
+    /* background:linear-gradient(to left,rgba(255, 255, 255, 0.8),oklch(39.3% 0.095 152.535 / 60%),oklch(25.741% 0.0654 152.749 / 70%)); */
+    box-shadow: 0 0 4px 1px rgba(32, 32, 32, 0.432);
+    background-color: oklch(92.8% 0.006 264.531);
+
     .head-parent{
         display: flex;
         align-items: center;
@@ -151,10 +152,8 @@ main{
         flex-wrap: wrap;
         position: relative;
     }
-    .product,.productCart{
+    .product,.productCart ,.productfav{
         width: 400px;
-        display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
         border-radius: 10px;
@@ -183,7 +182,8 @@ main{
             justify-content: center;
             align-items: center;
             gap: 1px;
-            color: aliceblue;
+            color:  oklch(39.3% 0.095 152.535);
+
             .action{
                 display: flex;
                 justify-content: center;
@@ -201,7 +201,7 @@ main{
             }
         }
     }
-    .product:hover{
+    .product:hover ,.productCart:hover ,.productfav:hover{
         transform: translateY(-5px);
         border: 3px solid rgb(8, 131, 24);
         box-shadow: 0 0 25px 3px black;
@@ -271,11 +271,14 @@ main{
     background-position: center;
 }
 .m-main{
-    background-image: url(../imges/palnt-green.jpg);
+    /* background-image: url(../imges/palnt-green.jpg); */
+    background-color:oklch(92.8% 0.006 264.531);
 }
 .m-register{
     background-image: url(../imges/palnt-blue.jfif);
 }
 .m-login{
     background-image: url(../imges/palnt-yellow.jfif);
+}
+.m-cart{
 }

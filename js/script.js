@@ -25,10 +25,10 @@ let allproducts = document.querySelector(".products")
 let products = [
     {id: 1, title: "Red Rose",  imgurl: "imges/Red-Rose.jpg", price: 30,  qty: 1,  catigory: "Romantic"  },
     {id: 2, title: "Yellow Tulip",  imgurl: "imges/tulip.jpg",  price: 25,  qty: 1,  catigory: "Spring"  },
-    {id: 3, title: "Sun flower",  imgurl: "imges/sunflower.jpg",  price: 20,  qty: 1,  catigory: "Outdoor"  },
+    {id: 3, title: "Sun flower",  imgurl: "imges/sunflower.jpg",  price: 20,  qty: 1,  catigory: "indoor"  },
     {id: 4, title: "White Jasmine",  imgurl: "imges/White-Jasmine.jpg",  price: 40,  qty: 1,  catigory: "Fragrant"  },
     {id: 5, title: "Pink Lily",  imgurl: "imges/lily.jpg",  price: 50,  qty: 1,  catigory: "Elegant"  },
-    {id: 6, title: "Daisy",  imgurl: "imges/daisy.jpg",  price: 15,  qty: 1,  catigory: "Outdoor"  },
+    {id: 6, title: "Daisy",  imgurl: "imges/daisy.jpg",  price: 15,  qty: 1,  catigory: "indoor"  },
     {id: 7, title: "Hydrangea",  imgurl: "imges/hydrangea.jpg",  price: 65,  qty: 1,  catigory: "Premium"  },
     {id: 8, title: "Peony",  imgurl: "imges/peony.jpg",  price: 70,  qty: 1,  catigory: "Premium"  },
     {id: 9, title: "Carnation",  imgurl: "imges/carnation.jpg",  price: 22,  qty: 1,  catigory: "Spring"  },
@@ -63,7 +63,7 @@ function drawitem(arr) {
             span = `<span class="cursor-pointer"  onclick="fav(${item.id})" ><i class="fa-solid fa-heart text-gray-400"></i></span>`
         }
         return `
-            <div class="product h-fit md:h-[600px]">
+            <div class="product flex flex-col h-fit md:h-[600px]">
                 <div class="img-container">
                     <img src="${item.imgurl}" alt="img of product">
                 </div>
