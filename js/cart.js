@@ -84,7 +84,7 @@ function drawiteminfav() {
                     <h4>price: $${item.price}</h4>
                     <h4 class="catigory">catigory: ${item.catigory}</h4>
                     <div class="action flex justify-between items-center mt-2">
-                        <span class="cursor-pointer" id="add-to-fav"><i class="fa-solid fa-heart text-red-800" onclick="removeFromFAV(${item.id})" ></i></span>
+                        <span class="cursor-pointer"><i class="fa-solid fa-heart text-red-800" onclick="removeFromFAV(${item.id})" ></i></span>
                     </div>
                 </div>
             </div>
@@ -121,8 +121,7 @@ function renderincartlist() {
     }, 0);
     document.getElementById("counter").innerHTML = totalQty
     let totalPrice = itemadded.reduce((acc, item) => {
-        acc = item.qty + acc
-        return allprice = acc * item.price
+        return acc + (item.price * item.qty)
     }, 0);
     drawitemincart()
     document.getElementById("totalprice").innerHTML = "TotalPrice: $" + totalPrice
@@ -157,11 +156,9 @@ function changeQTY(id, val) {
     let item = itemadded.find((item) => item.id === id);
     if (val === -1 && item.qty === 1) {
         removeitem(id);
-        renderincartlist();
     } else {
         item.qty = item.qty + val;
         localStorage.setItem("IteminCart", JSON.stringify(itemadded));
-        renderincartlist();
     }
     renderincartlist();
 }
