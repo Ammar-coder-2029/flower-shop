@@ -12,6 +12,10 @@ Most tutorials teach you to build a to-do list. This is a to-do list with trust 
 
 Every feature here — cart, favorites, search — was built, broken, debugged, and rebuilt by tracing the actual cause of each bug rather than patching symptoms.
 
+**🔗 Live demo:** https://ammar-coder-2029.github.io/flower-shop/
+
+**📦 Repository:** https://github.com/Ammar-coder-2029/flower-shop
+
 ## ✨ Features
 
 - 🔐 **Auth flow** — register, login, logout (client-side, backed by `localStorage`)
