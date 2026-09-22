@@ -77,6 +77,11 @@ header {
         align-items: center;
         gap: .75rem;
 
+        .user-info {
+            display: none;
+            color: var(--forest);
+            font-weight: 700;
+        }
         ul {
             display: flex;
             align-items: center;
@@ -131,11 +136,6 @@ header {
         }
     }
 
-    .user-info {
-        display: none !important;
-        color: var(--forest);
-        font-weight: 700;
-    }
 
     .cart {
         position: relative;
