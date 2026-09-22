@@ -26,14 +26,12 @@ logoutBtn.addEventListener("click", function(e) {
 
 let allproducts = document.querySelector(".productsCart")
 let itemadded = localStorage.getItem("IteminCart") ? JSON.parse(localStorage.getItem("IteminCart")) : [];
-// لو الداتا اللي رجعت مش مصفوفة لأي سبب خليها مصفوفة فاضية
 if (!Array.isArray(itemadded)) {
     itemadded = [];
 }
 
 let allFavProducts = document.getElementById("favContainer")
 let iteaminFav = localStorage.getItem("iteminFAV") ? JSON.parse(localStorage.getItem("iteminFAV")) : [];
-//عشان لو الداتا اللي رجعت مش مصفوفة لأي سبب خليها مصفوفة فاضية
 if (!Array.isArray(iteaminFav)) {
     iteaminFav = [];
 }
@@ -41,21 +39,21 @@ if (!Array.isArray(iteaminFav)) {
 function drawitemincart() {
     let x = itemadded.map((item) => {
         return `
-            <div class="productCart flex flex-row h-fit md:h-[400px]">
-                <div class="img-container ml-2 h-[60%] w-[80%]"">
+            <div class="productCart flex flex-row h-fit md:h-[350px]">
+                <div class="img-container ml-8 h-[70%] w-[80%]">
                     <img src="${item.imgurl}" alt="img of product" class="h-[100%] w-[100%]" >
                 </div>
                 <div class="disc-prod">
                     <h1 class="font-bold text-xl">${item.title}</h1>
                     <h4>price: $${item.price * item.qty}</h4>
-                    <h4>count: $${item.qty}</h4>
+                    <h4>count: ${item.qty}</h4>
                     <h4 class="catigory">catigory: ${item.catigory}</h4>
                     <div class="pop-count flex gap-1">
-                        <button type="button" class="count-pls p-1 hover:bg-green-900 hover:text-white border-green-900 ease-in-out duration-700 border-2 rounded-lg"
-                            onclick="changeQTY(${item.id}, 1)">+</button>
-                        <span class="count-res pt-2 px-2 text-green-900 ease-in-out duration-700">${item.qty}</span>
-                        <button type="button" class="count-min p-1 text-green-900 hover:bg-green-900 hover:text-white border-green-900 ease-in-out duration-700 border-2 rounded-lg"
-                            onclick="changeQTY(${item.id}, -1)">-</button>
+                    <button type="button" class="count-pls p-2 hover:bg-green-900 hover:text-white border-green-900 ease-in-out duration-700 border-2 rounded-lg"
+                        onclick="changeQTY(${item.id}, 1)">+</button>
+                    <span class="count-res pt-2 px-2 text-green-900 ease-in-out duration-700">${item.qty}</span>
+                    <button type="button" class="count-min p-2 text-green-900 hover:bg-green-900 hover:text-white border-green-900 ease-in-out duration-700 border-2 rounded-lg"
+                        onclick="changeQTY(${item.id}, -1)">-</button>
                     </div>
                     <div class="action flex justify-between items-center mt-2">
                         <button class="h-full bg-red-700 hover:bg-red-800 text-white rounded" onclick="removeitem(${item.id})">remove from cart</button>
@@ -64,11 +62,10 @@ function drawitemincart() {
             </div>
         `;
     });
-    
+
     allproducts.innerHTML = x.join("");
 }
 drawitemincart()
-
 
 
 //================== item in favorite list ======================
@@ -84,7 +81,7 @@ function drawiteminfav() {
                     <h4>price: $${item.price}</h4>
                     <h4 class="catigory">catigory: ${item.catigory}</h4>
                     <div class="action flex justify-between items-center mt-2">
-                        <span class="cursor-pointer"><i class="fa-solid fa-heart text-red-800" onclick="removeFromFAV(${item.id})" ></i></span>
+                        <span class="cursor-pointer"><i class="fa-solid fa-heart text-red-800" onclick="removeFromFAV(${item.id})"></i></span>
                     </div>
                 </div>
             </div>
@@ -94,9 +91,9 @@ function drawiteminfav() {
 }
 drawiteminfav()
 
-function removeFromFAV(id){
-    iteaminFav = iteaminFav.filter((item)=> item.id !== id)
-    localStorage.setItem("iteminFAV",JSON.stringify(iteaminFav))
+function removeFromFAV(id) {
+    iteaminFav = iteaminFav.filter((item) => item.id !== id)
+    localStorage.setItem("iteminFAV", JSON.stringify(iteaminFav))
     renderincartlist()
     drawiteminfav()
 }
@@ -104,11 +101,6 @@ function removeFromFAV(id){
 //================== pop cart list ======================
 let cartlist = document.getElementById("cart-icon")
 let cartpop = document.getElementById("pop-list")
-let countpls = document.getElementsByClassName("count-pls")
-let countmin = document.getElementsByClassName("count-min")
-let countres = document.getElementsByClassName("count-res")
-let itemtitle = document.getElementsByClassName("item-title")
-let itemprice = document.getElementsByClassName("item-price")
 
 cartlist.addEventListener("click", () => {
     cartpop.style.display = cartpop.style.display === "block" ? "none" : "block";
@@ -126,11 +118,10 @@ function renderincartlist() {
     drawitemincart()
     document.getElementById("totalprice").innerHTML = "TotalPrice: $" + totalPrice
 }
-function removeitem(id){
-    itemadded = itemadded.filter((item)=> item.id !== id)
-    localStorage.setItem("IteminCart",JSON.stringify(itemadded))
+function removeitem(id) {
+    itemadded = itemadded.filter((item) => item.id !== id)
+    localStorage.setItem("IteminCart", JSON.stringify(itemadded))
     renderincartlist()
-    drawitemincart()
 }
 
 function drawCartItem(item) {
@@ -145,7 +136,7 @@ function drawCartItem(item) {
             <div class="pop-count flex gap-1">
                 <button type="button" class="count-pls py-px px-2 hover:bg-green-900 hover:text-white border-green-900 ease-in-out duration-700 border-2 rounded-lg"
                     onclick="changeQTY(${item.id}, 1)">+</button>
-                <span class="count-res p-2 text-green-900 ease-in-out duration-700">${item.qty}</span>
+                <span class="count-res py-px px-2 text-green-900 ease-in-out duration-700">${item.qty}</span>
                 <button type="button" class="count-min py-px px-2 hover:bg-green-900 hover:text-white border-green-900 ease-in-out duration-700 border-2 rounded-lg"
                     onclick="changeQTY(${item.id}, -1)">-</button>
             </div>
@@ -159,7 +150,7 @@ function changeQTY(id, val) {
     } else {
         item.qty = item.qty + val;
         localStorage.setItem("IteminCart", JSON.stringify(itemadded));
+        renderincartlist();
     }
-    renderincartlist();
 }
 renderincartlist()

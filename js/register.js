@@ -19,13 +19,11 @@ registerForm.addEventListener("submit", function(e) {
         localStorage.setItem("userLname",userLname.value)
         localStorage.setItem("email",email.value)
         localStorage.setItem("password",password.value)
+        alert("your account created sucssefully")
+        setTimeout(()=>{
+            window.location = "login.html"
+        },500)
         localStorage.setItem("isloggin", "true");
-        if (isloggin == true) {
-            alert("your account created sucssefully")
-            setTimeout(()=>{
-                window.location = "login.html"
-            },500)
-        }
     } 
 }
 )

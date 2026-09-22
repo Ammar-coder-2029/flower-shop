@@ -14,7 +14,7 @@ if (isloggin === "true") {
 
 logoutBtn.addEventListener("click", function(e) {
     e.preventDefault();
-    isloggin= localStorage.setItem("isloggin","false");
+    isloggin = localStorage.setItem("isloggin", "false");
     setTimeout(() => {
         window.location = "login.html";
     }, 500);
@@ -37,7 +37,6 @@ let products = [
     {id: 12, title: "Daffodil",  imgurl: "imges/daffodil.jpg", price: 30,  qty: 1,  catigory: "Spring"  }
 ];
 let itemadded = localStorage.getItem("IteminCart") ? JSON.parse(localStorage.getItem("IteminCart")) : [];
-// لو الداتا اللي رجعت مش مصفوفة لأي سبب خليها مصفوفة فاضية
 if (!Array.isArray(itemadded)) {
     itemadded = [];
 }
@@ -49,18 +48,18 @@ if (!Array.isArray(iteaminFav)) {
 function drawitem(arr) {
     let x = arr.map((item) => {
         let isAdded = itemadded.find((i) => i.id === item.id);
-        let isFav = iteaminFav.find((i)=> i.id === item.id)
+        let isFav = iteaminFav.find((i) => i.id === item.id)
         let btn = ""
-        let span= ""
+        let span = ""
         if (isAdded) {
             btn = `<button class="h-full bg-red-700 hover:bg-red-800 text-white rounded px-8" onclick="removeitem(${item.id})">remove from cart</button>`;
         } else {
             btn = `<button class="h-full bg-green-700 hover:bg-green-800 text-white rounded " onclick="add(${item.id})">add to cart</button>`;
         }
         if (isFav) {
-            span = `<span class="cursor-pointer"  onclick="removeFromFAV(${item.id})" ><i class="fa-solid fa-heart text-red-800"></i></span>`
+            span = `<span class="cursor-pointer" onclick="removeFromFAV(${item.id})"><i class="fa-solid fa-heart text-red-800"></i></span>`
         } else {
-            span = `<span class="cursor-pointer"  onclick="fav(${item.id})" ><i class="fa-solid fa-heart text-gray-400"></i></span>`
+            span = `<span class="cursor-pointer" onclick="fav(${item.id})"><i class="fa-solid fa-heart text-gray-400"></i></span>`
         }
         return `
             <div class="product flex flex-col h-fit md:h-[600px]">
@@ -79,23 +78,18 @@ function drawitem(arr) {
             </div>
         `;
     });
-    
+
     allproducts.innerHTML = x.join("");
 }
 drawitem(products)
 
 let cartlist = document.getElementById("cart-icon")
 let cartpop = document.getElementById("pop-list")
-let countpls = document.getElementsByClassName("count-pls")
-let countmin = document.getElementsByClassName("count-min")
-let countres = document.getElementsByClassName("count-res")
-let itemtitle = document.getElementsByClassName("item-title")
-let itemprice = document.getElementsByClassName("item-price")
 
-cartlist.addEventListener("click",()=>{
+cartlist.addEventListener("click", () => {
     if (cartpop.style.display === "block") {
         cartpop.style.display = "none"
-    }else{
+    } else {
         cartpop.style.display = "block"
     }
 })
@@ -103,39 +97,39 @@ cartlist.addEventListener("click",()=>{
 function renderincartlist() {
     document.getElementById("pop-list-items").innerHTML = itemadded.map(drawCartItem).join("");
     let totalQty = itemadded.reduce((acc, item) => {
-            return acc = item.qty + acc
+        return acc = item.qty + acc
     }, 0);
     document.getElementById("counter").innerHTML = totalQty
 }
-function removeitem(id){
-    itemadded = itemadded.filter((item)=> item.id !== id)
-    localStorage.setItem("IteminCart",JSON.stringify(itemadded))
+function removeitem(id) {
+    itemadded = itemadded.filter((item) => item.id !== id)
+    localStorage.setItem("IteminCart", JSON.stringify(itemadded))
     renderincartlist()
     drawitem(products)
 }
-function removeFromFAV(id){
-    iteaminFav = iteaminFav.filter((item)=> item.id !== id)
-    localStorage.setItem("iteminFAV",JSON.stringify(iteaminFav))
+function removeFromFAV(id) {
+    iteaminFav = iteaminFav.filter((item) => item.id !== id)
+    localStorage.setItem("iteminFAV", JSON.stringify(iteaminFav))
     renderincartlist()
     drawitem(products)
 }
-function add(id){
+function add(id) {
     if (isloggin === "true") {
         let checkitem = products.find((item) => item.id === id)
-        let beenadded = itemadded.find((item)=> item.id === id)
+        let beenadded = itemadded.find((item) => item.id === id)
         if (beenadded) {
-            beenadded.qty+=1
-        }else{
+            beenadded.qty += 1
+        } else {
             itemadded = [...itemadded, checkitem]
         }
-        localStorage.setItem("IteminCart",JSON.stringify(itemadded))
+        localStorage.setItem("IteminCart", JSON.stringify(itemadded))
         renderincartlist()
         drawitem(products)
-    }else{
+    } else {
         alert("you need to sign in")
-        setTimeout(()=>{
+        setTimeout(() => {
             window.location = "login.html"
-        },500)
+        }, 500)
     }
 }
 
@@ -151,30 +145,30 @@ function drawCartItem(item) {
             <div class="pop-count flex gap-1">
                 <button type="button" class="count-pls py-px px-2 hover:bg-green-900 hover:text-white border-green-900 ease-in-out duration-700 border-2 rounded-lg"
                     onclick="changeQTY(${item.id}, 1)">+</button>
-                
+
                 <span class="count-res py-px px-2 text-green-900 ease-in-out duration-700">${item.qty}</span>
-                
+
                 <button type="button" class="count-min py-px px-2 hover:bg-green-900 hover:text-white border-green-900 ease-in-out duration-700 border-2 rounded-lg"
                     onclick="changeQTY(${item.id}, -1)">-</button>
             </div>
         </div>
     `;
 }
-function fav(id){
+function fav(id) {
     if (isloggin == "true") {
-        let infav = products.find((item)=>item.id===id)
-        let beenadded = iteaminFav.find((item)=> item.id === id)
+        let infav = products.find((item) => item.id === id)
+        let beenadded = iteaminFav.find((item) => item.id === id)
         if (!beenadded) {
-            iteaminFav = [...iteaminFav , infav]
+            iteaminFav = [...iteaminFav, infav]
         }
-        localStorage.setItem("iteminFAV",JSON.stringify(iteaminFav))
+        localStorage.setItem("iteminFAV", JSON.stringify(iteaminFav))
         renderincartlist()
         drawitem(products)
-    }else{
+    } else {
         alert("you need to sign in")
-        setTimeout(()=>{
+        setTimeout(() => {
             window.location = "login.html"
-        },500)
+        }, 500)
     }
 }
 function changeQTY(id, val) {
