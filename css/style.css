@@ -60,9 +60,10 @@ header{
         }
         .user-info{
             display: flex;
-            color: rgb(2, 41, 2);
+            color: rgb(19, 117, 19);
         }
         .pop-list{
+            display: none;
             position: absolute;
             top: 46px;
             right: -100px;
@@ -162,17 +163,15 @@ main{
         overflow: hidden;
         border: 1px solid rgba(128, 128, 128, 0.473);
         .img-container{
-            width: 100%;
-            height: 100%;
+            background-color: aqua;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: inherit;
             img{
-                border-radius: 20px;
                 object-fit: cover;
-                width: 70%;
-                height: 60%;
+                object-position: center;
                 transition: 0.35s ease-in-out;
             }
             img:hover{
@@ -193,12 +192,11 @@ main{
                 align-items: center;
                 gap: 20px;
                 width: 100%;
+                padding-bottom: 10px;
             }
             button{
-                width:60%;
                 text-align: center;
-                padding: 10px 4px;
-                color: aliceblue;
+                padding: 7px 25px;
                 border-radius: 10px;
                 transition: 0.3s ease-in-out;
             }

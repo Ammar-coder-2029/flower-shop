@@ -53,9 +53,9 @@ function drawitem(arr) {
         let btn = ""
         let span= ""
         if (isAdded) {
-            btn = `<button class="bg-red-700 hover:bg-red-800 text-white rounded p-1" onclick="removeitem(${item.id})">remove from cart</button>`;
+            btn = `<button class="h-full bg-red-700 hover:bg-red-800 text-white rounded px-8" onclick="removeitem(${item.id})">remove from cart</button>`;
         } else {
-            btn = `<button class="bg-green-700 hover:bg-green-800 text-white rounded p-1" onclick="add(${item.id})">add to cart</button>`;
+            btn = `<button class="h-full bg-green-700 hover:bg-green-800 text-white rounded " onclick="add(${item.id})">add to cart</button>`;
         }
         if (isFav) {
             span = `<span class="cursor-pointer"  onclick="removeFromFAV(${item.id})" ><i class="fa-solid fa-heart text-red-800"></i></span>`
@@ -64,8 +64,8 @@ function drawitem(arr) {
         }
         return `
             <div class="product flex flex-col h-fit md:h-[600px]">
-                <div class="img-container">
-                    <img src="${item.imgurl}" alt="img of product">
+                <div class="img-container h-full w-full">
+                    <img src="${item.imgurl}" alt="img of product" class="h-full w-full">
                 </div>
                 <div class="disc-prod">
                     <h1 class="font-bold text-xl">${item.title}</h1>
@@ -144,8 +144,8 @@ function drawCartItem(item) {
         <div class="pop-list-countainer p-1 gap-y-[5px] backdrop-blur-3xl">
             <div class="pop-disc flex gap-x-2 align-center p-1">
                 <h3 class="text-lg font-bold item-title">${item.title}</h3>
-                <h4 class="text-lg item-price">price:$
-                    <p class="text-lg inline-block">${item.price * item.qty}</p>
+                <h4 class="text-lg item-price">price:
+                    <p class="text-lg inline-block">$${item.price * item.qty}</p>
                 </h4>
             </div>
             <div class="pop-count flex gap-1">
